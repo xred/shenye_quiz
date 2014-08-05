@@ -630,6 +630,8 @@ class textDataManager
         window.dataJson.scoreArray = nowScoreManager.scoreArray
         console.log window.dataJson,"save dataJson"
         dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
+        dataJsonStr = dataJsonStr.replace "\"","\'"
+        console.log dataJsonStr,"dataJsonStr"
         
         jQuery.post 'save_data.php',{
             data:dataJsonStr
