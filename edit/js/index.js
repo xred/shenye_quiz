@@ -683,7 +683,8 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       console.log(dataJsonStr, "dataJsonStr");
       return jQuery.post('save_data.php', {
         data: dataJsonStr,
-        contentType: "application/json",
+        contentType: "text/plain",
+        dataType: "text",
         "private": window.shenye_private,
         "public": window.shenye_public
       }, function(result) {
