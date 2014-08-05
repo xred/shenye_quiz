@@ -4,9 +4,7 @@ $private = $_GET['private'];
 $public = $_GET['public'];
 #$data = $_POST['data'];
 $data = file_get_contents("php://input");
-echo $data;
-
-/*$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
+$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
 if ($row['public'] == $public && $row['private'] == $private) {
@@ -16,5 +14,4 @@ if ($row['public'] == $public && $row['private'] == $private) {
 }else{
 	echo "fail";
 }
-*/ 
 ?>
