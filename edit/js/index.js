@@ -674,7 +674,7 @@
         "private": window.shenye_private,
         "public": window.shenye_public
       }, function(result) {
-        return console.log(text, "post text!!!!!!!!");
+        return console.log(result, "post result!!!!!!!!");
       });
     };
 

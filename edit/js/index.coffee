@@ -636,7 +636,7 @@ class textDataManager
             private:window.shenye_private
             public:window.shenye_public
         },(result)=>
-            console.log text,"post text!!!!!!!!"
+            console.log result,"post result!!!!!!!!"
 
     checkAllInfoComplete:()->
         @queTitle = @queTitleInput.val().replace " ",""
