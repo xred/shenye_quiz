@@ -680,8 +680,7 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       window.dataJson.scoreArray = nowScoreManager.scoreArray;
       console.log(window.dataJson, "save dataJson");
       dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
-      console.log(dataJsonStr, "dataJsonStr");
-      return jQuery.ajax('http://114.215.169.8/shenye_quiz/edit/save_data.php', {
+      return jQuery.ajax('save_data.php', {
         data: dataJsonStr,
         method: "post",
         contentType: "text/plain",

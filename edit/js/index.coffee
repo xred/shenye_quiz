@@ -641,9 +641,9 @@ class textDataManager
         window.dataJson.scoreArray = nowScoreManager.scoreArray
         console.log window.dataJson,"save dataJson"
         dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
-        console.log dataJsonStr,"dataJsonStr"
+        #console.log dataJsonStr,"dataJsonStr"
         
-        jQuery.ajax 'http://114.215.169.8/shenye_quiz/edit/save_data.php',{
+        jQuery.ajax 'save_data.php',{
             data: dataJsonStr
             method: "post"
             contentType: "text/plain"
