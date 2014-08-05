@@ -17,7 +17,9 @@ do ()->
         document.attachEvent 'WeixinJSBridgeReady',onBridgeReady
         document.attachEvent 'onWeixinJSBridgeReady',onBridgeReady
 
-defaultShareTitle = '我在参加华科人鉴定考试！我不是武大的！你也来试试！'
+
+document.title = window.dataJson.queTitle
+defaultShareTitle = window.dataJson.queTitle
 weixinData.title = defaultShareTitle
 weixinData.desc = defaultShareTitle
 
@@ -114,8 +116,8 @@ class uniqueQuestion
 
     createQueDiv:()->
         @setProgress()
-        nowDataJson = @dataArray[@nowQueIndex]
-        title = nowDataJson['title']
+        dataJson = @dataArray[@nowQueIndex]
+        title = dataJson['title']
         titleStr = "#{@nowQueIndex+1}. #{title}"
         queHtml = "<div class='title'>
                     #{titleStr}
@@ -123,7 +125,7 @@ class uniqueQuestion
                 <ul id='queList'>"
 
         #create list
-        answerListArray = nowDataJson['answerList']
+        answerListArray = dataJson['answerList']
 
         for item,index in answerListArray
             nowWord = @getWordByIndex index
@@ -136,9 +138,9 @@ class uniqueQuestion
         @queDiv.fadeIn()
         @addEvent()
     ifRightChoice:(choiceIndex)->
-        nowdatajson = @dataArray[@nowQueIndex]
-        console.log choiceIndex,nowdatajson['rightIndex']
-        if nowdatajson['rightIndex'] == choiceIndex
+        dataJson = @dataArray[@nowQueIndex]
+        console.log choiceIndex,dataJson['rightIndex']
+        if dataJson['rightIndex'] == choiceIndex
             return yes
         else
             return no
@@ -231,8 +233,8 @@ class uniqueQuestion
 jQuery(document).ready ->
     
     console.log "ready"
-    window.nowUQ = new uniqueQuestion window.nowdatajson
-    nowIM = new infoManager window.nowdatajson
+    window.nowUQ = new uniqueQuestion window.dataJson
+    nowIM = new infoManager window.dataJson
 
     joinEm = jQuery ".joinPeople em"
 

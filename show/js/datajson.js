@@ -1,5 +1,5 @@
 (function() {
-  window.nowdatajson = {
+  window.dataJson = {
     queTitle: "华科人鉴定考试",
     startText: "请在没有指导人的情况下独立完成，如有舞弊，一经发现，即刻永久吊销“华科校友圈”圈籍 -关注微信：hustunion",
     footerImgUrl: "img/footer.jpg",

@@ -25,7 +25,9 @@
     }
   })();
 
-  defaultShareTitle = '我在参加华科人鉴定考试！我不是武大的！你也来试试！';
+  document.title = window.dataJson.queTitle;
+
+  defaultShareTitle = window.dataJson.queTitle;
 
   weixinData.title = defaultShareTitle;
 
@@ -122,13 +124,13 @@
     };
 
     uniqueQuestion.prototype.createQueDiv = function() {
-      var answerListArray, index, item, liHtml, nowDataJson, nowWord, queHtml, title, titleStr, _i, _len;
+      var answerListArray, dataJson, index, item, liHtml, nowWord, queHtml, title, titleStr, _i, _len;
       this.setProgress();
-      nowDataJson = this.dataArray[this.nowQueIndex];
-      title = nowDataJson['title'];
+      dataJson = this.dataArray[this.nowQueIndex];
+      title = dataJson['title'];
       titleStr = "" + (this.nowQueIndex + 1) + ". " + title;
       queHtml = "<div class='title'>                    " + titleStr + "                    </div>                <ul id='queList'>";
-      answerListArray = nowDataJson['answerList'];
+      answerListArray = dataJson['answerList'];
       for (index = _i = 0, _len = answerListArray.length; _i < _len; index = ++_i) {
         item = answerListArray[index];
         nowWord = this.getWordByIndex(index);
@@ -143,10 +145,10 @@
     };
 
     uniqueQuestion.prototype.ifRightChoice = function(choiceIndex) {
-      var nowdatajson;
-      nowdatajson = this.dataArray[this.nowQueIndex];
-      console.log(choiceIndex, nowdatajson['rightIndex']);
-      if (nowdatajson['rightIndex'] === choiceIndex) {
+      var dataJson;
+      dataJson = this.dataArray[this.nowQueIndex];
+      console.log(choiceIndex, dataJson['rightIndex']);
+      if (dataJson['rightIndex'] === choiceIndex) {
         return true;
       } else {
         return false;
@@ -238,8 +240,8 @@
   jQuery(document).ready(function() {
     var joinEm, nowIM;
     console.log("ready");
-    window.nowUQ = new uniqueQuestion(window.nowdatajson);
-    nowIM = new infoManager(window.nowdatajson);
+    window.nowUQ = new uniqueQuestion(window.dataJson);
+    nowIM = new infoManager(window.dataJson);
     joinEm = jQuery(".joinPeople em");
     joinEm.html("超过20万");
     window.hideGuide = function() {
