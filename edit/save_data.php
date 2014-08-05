@@ -14,4 +14,4 @@ if ($row['public'] == $public && $row['private'] == $private) {
 }else{
 	echo "fail";
 }
-?>
+ ?>
