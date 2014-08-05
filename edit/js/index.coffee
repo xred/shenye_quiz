@@ -644,7 +644,7 @@ class textDataManager
         console.log dataJsonStr,"dataJsonStr"
         
         jQuery.post 'save_data.php',{
-            data:dataJsonStr
+            data:window.dataJson
             #contentType: "application/json"
             dataType:"text"
             private:window.shenye_private
