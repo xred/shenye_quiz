@@ -596,6 +596,7 @@ class textDataManager
         @accountBtnTextInput = jQuery "#input_endBtnText"
         @accountBtnHrefInput = jQuery "#input_endBtnHref"
         
+        @saved = no
         @init dataJson
 
     init:(dataJson)->
@@ -618,6 +619,17 @@ class textDataManager
         @saveBtn = jQuery "#btn-saveData"
         @previewBtn = jQuery "btn-preview"
 
+        @previewBtn.click =>
+            previewUrl = "http://114.215.169.8/shenye_quiz/show/index.php?id=#{window.shenye_public}"
+            if window.isedit
+                window.open previewUrl
+            else
+                if @saved
+                    window.open previewUrl
+                else
+                    window.alertMsg "还没办法预览哦…先保存一次看看~","success",3
+                
+                
         @saveBtn.click =>
             if @checkAllInfoComplete()
                 console.log "all info check clear"
@@ -650,6 +662,11 @@ class textDataManager
             #dataType:"text"
             success:(result)->
                 console.log result,"post result" 
+                if result == "success"
+                    window.alertMsg "保存成功么么哒~","success",3
+                    @saved = yes
+                else
+                    window.alertMsg "保存失败嘤嘤嘤…","error",3
         }
 
     checkAllInfoComplete:()->
@@ -677,9 +694,6 @@ class textDataManager
                         return false
                     else
                         return yes
-        
-        
-
 
 getCookies = ()->
     window.shenye_public = null

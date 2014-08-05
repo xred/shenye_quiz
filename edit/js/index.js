@@ -626,6 +626,7 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       this.footerTextInput = jQuery("#input_footerText");
       this.accountBtnTextInput = jQuery("#input_endBtnText");
       this.accountBtnHrefInput = jQuery("#input_endBtnHref");
+      this.saved = false;
       this.init(dataJson);
     }
 
@@ -650,6 +651,19 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       var _this = this;
       this.saveBtn = jQuery("#btn-saveData");
       this.previewBtn = jQuery("btn-preview");
+      this.previewBtn.click(function() {
+        var previewUrl;
+        previewUrl = "http://114.215.169.8/shenye_quiz/show/index.php?id=" + window.shenye_public;
+        if (window.isedit) {
+          return window.open(previewUrl);
+        } else {
+          if (_this.saved) {
+            return window.open(previewUrl);
+          } else {
+            return window.alertMsg("还没办法预览哦…先保存一次看看~", "success", 3);
+          }
+        }
+      });
       return this.saveBtn.click(function() {
         if (_this.checkAllInfoComplete()) {
           console.log("all info check clear");
@@ -684,7 +698,13 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
         method: "post",
         contentType: "text/plain",
         success: function(result) {
-          return console.log(result, "post result");
+          console.log(result, "post result");
+          if (result === "success") {
+            window.alertMsg("保存成功么么哒~", "success", 3);
+            return this.saved = true;
+          } else {
+            return window.alertMsg("保存失败嘤嘤嘤…", "error", 3);
+          }
         }
       });
     };

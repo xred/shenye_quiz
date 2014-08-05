@@ -9,7 +9,7 @@ $row = mysql_fetch_array($result);
 if (1) {
 	$filename = "./datajson/".$public.".js";
 	file_put_contents($filename, $data);
-	echo $data;
+	echo "success";
 }else{
 	echo "fail";
 }
