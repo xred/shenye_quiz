@@ -661,8 +661,7 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
     };
 
     textDataManager.prototype.saveDataJson = function() {
-      var dataJsonStr,
-        _this = this;
+      var dataJsonStr;
       if (window.dataJson === null) {
         window.dataJson = {};
       }
@@ -681,13 +680,16 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       console.log(window.dataJson, "save dataJson");
       dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
       return jQuery.ajax('save_data.php', {
-        data: dataJsonStr,
+        data: {
+          data: dataJsonStr,
+          "private": window.shenye_private,
+          "public": window.shenye_public
+        },
         method: "post",
         contentType: "text/plain",
-        "private": window.shenye_private,
-        "public": window.shenye_public
-      }, function(result) {
-        return console.log(result, "post result!!!!!!!!");
+        success: function(result) {
+          return console.log(result, "post result");
+        }
       });
     };
 

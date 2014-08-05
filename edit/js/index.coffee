@@ -644,14 +644,17 @@ class textDataManager
         #console.log dataJsonStr,"dataJsonStr"
         
         jQuery.ajax 'save_data.php',{
-            data: dataJsonStr
+            data: 
+                data:dataJsonStr
+                private:window.shenye_private
+                public:window.shenye_public
             method: "post"
             contentType: "text/plain"
             #dataType:"text"
-            private:window.shenye_private
-            public:window.shenye_public
-        },(result)=>
-            console.log result,"post result!!!!!!!!"
+            success:(result)->
+                console.log result,"post result" 
+
+        }
 
     checkAllInfoComplete:()->
         @queTitle = @queTitleInput.val().replaceAll " ",""
