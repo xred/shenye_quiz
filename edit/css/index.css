@@ -1,0 +1,428 @@
+.transition {
+  transition: all 200ms linear;
+  -webkit-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+}
+.css-speed {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  /* Other transform properties here */
+  transform: translateZ(0);
+}
+body {
+  padding: 0;
+  margin: 0;
+  background: url(../image/body_repeat.jpg) center;
+  background-repeat: repeat;
+  padding-bottom: 50px;
+}
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+#phone-warning {
+  display: none;
+}
+@media screen and (max-width: 800px) {
+  #phone-warning {
+    display: block;
+  }
+}
+.container {
+  margin-top: 20px;
+  max-width: 640px;
+}
+.container .cCell {
+  border-radius: 5px;
+  background: #f9fdff;
+  -webkit-box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 17px;
+  margin-bottom: 20px;
+}
+.container .cHeader {
+  padding-bottom: 27px;
+  height: 120px;
+}
+.container .cHeader .leftIcon {
+  float: left;
+  width: 85px;
+  height: 85px;
+  border-radius: 90px;
+  overflow: hidden;
+  background: #2fb2e1;
+  text-align: center;
+  position: relative;
+}
+.container .cHeader .leftIcon:hover .btn-submit-img {
+  opacity: 1;
+}
+.container .cHeader .leftIcon i {
+  font-size: 44px;
+  line-height: 84px;
+  color: #fff;
+}
+.container .cHeader .leftIcon img {
+  min-width: 100%;
+  max-height: 100%;
+}
+.container .cHeader .leftIcon .btn-submit-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  line-height: 84px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 90px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 200ms linear;
+  -webkit-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+}
+.container .cHeader .rightInfos {
+  margin-left: 95px;
+}
+.container .cHeader .rightInfos #queTitle {
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  font-size: 24px;
+  color: #288eb3;
+  padding: 30px 10px;
+}
+.container .cHeader .rightInfos .joinPeople {
+  color: #529cb6;
+}
+.container .cHeader .rightInfos .joinPeople em {
+  font-style: normal;
+  color: #cd7171;
+}
+.modal-footer .btn + .btn {
+  margin-left: 0;
+}
+.modal .modal-dialog .modal-content {
+  background: #efefef;
+  border-color: #000;
+  color: #a94442;
+}
+.modal .btn-default {
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 800px) {
+  .guide-list {
+    display: none;
+  }
+}
+.guide-list {
+  max-width: 260px;
+  position: fixed;
+  left: 10px;
+  top: 20px;
+  background: #fff;
+  border-radius: 5px;
+}
+.guide-list li {
+  border-bottom: 1px solid #DDDDDD;
+  margin-top: 0;
+}
+.guide-list li:last-child {
+  border-bottom: 0;
+}
+.guide-list li a {
+  padding: 16px 16px;
+}
+.guide-list li a i {
+  background: #428bca;
+  color: #fff;
+  padding: 6px;
+  border-radius: 13px;
+  font-size: 10px;
+  margin-right: 1em;
+}
+.guide-list li.divider {
+  background: #efefef;
+}
+.nav-stacked > li + li {
+  margin-top: 0;
+}
+.editCell {
+  margin-bottom: 20px;
+}
+.editCell .title {
+  border-left: 3px solid #7fcfec;
+  padding: 6px;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  background: -webkit-linear-gradient(left, #d6eaf1, #f9fdff);
+}
+.editCell .title em {
+  font-size: 12px;
+  color: #7599B1;
+  font-style: normal;
+}
+.editCell textarea {
+  max-width: 100%;
+}
+.addQue {
+  margin: 0 auto;
+}
+.addQue #queItemTitle {
+  margin-bottom: 10px;
+}
+.addQue #ansAddList {
+  margin-top: 20px;
+}
+.addQue #ansAddList li {
+  margin-bottom: 10px;
+}
+.cQueList li {
+  margin-bottom: 10px;
+}
+.cQueList li .panel-heading .titleA {
+  display: block;
+  margin-right: 100px;
+}
+.cQueList li .panel-heading:hover .btns {
+  opacity: 1;
+}
+.cQueList li .panel-heading .btns {
+  opacity: 0;
+  transition: all 200ms linear;
+  -webkit-transition: all 200ms linear;
+  -ms-transition: all 200ms linear;
+  -moz-transition: all 200ms linear;
+  float: right;
+}
+.cQueList li .panel-heading .btns a {
+  cursor: pointer;
+  float: left;
+  margin-right: 0.7em;
+  text-decoration: none;
+}
+.cQueList li .panel-heading .btns a i {
+  font-size: 16px;
+  line-height: 23px;
+}
+.cQueList li .panel-heading .btns .btn-que-delete i {
+  color: #E67777;
+}
+.cQueList li .panel-heading .btns .btn-que-delete i:hover {
+  color: #BD5555;
+}
+.cQueList li .panel-heading .btns .moveHolder {
+  float: left;
+  height: 23px;
+}
+.cQueList li .panel-heading .btns .moveHolder a {
+  display: inline-block;
+}
+.cQueList li .panel-body .cBodyQue {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  /* Other transform properties here */
+  transform: translateZ(0);
+}
+.cQueList li .panel-body .cBodyQue .queTitle {
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.cQueList li .panel-body .cBodyQue ul {
+  padding: 0;
+}
+.cQueList li .panel-body .cBodyQue ul li {
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  background: -webkit-linear-gradient(left, #f6f7f7, #ffffff);
+  padding: 5px;
+  font-size: 16px;
+  position: relative;
+  padding-left: 30px;
+}
+.cQueList li .panel-body .cBodyQue ul li.active {
+  background: #D4E7F0;
+}
+.cQueList li .panel-body .cBodyQue ul li .icon-ok-circle {
+  display: none;
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  font-size: 18px;
+  color: #41B172;
+}
+.cQueList li .panel-body .cBodyQue ul li.right .icon-ok-circle {
+  display: block;
+}
+#btn-deleteAllQue {
+  float: right;
+  display: inline-block;
+  width: 60px;
+}
+#queListHolder li .panel-heading:hover {
+  background: #E9E9E9;
+}
+.cBody .cBodyStart span {
+  font-size: 16px;
+}
+.cBody .cBodyStart .btn {
+  margin-top: 1em;
+  width: 46%;
+  font-size: 14px;
+  display: inline-block;
+}
+.cBody .cBodyStart .btn#btn-cancelEdit {
+  float: right;
+}
+.cBody .cBodyEnd {
+  display: none;
+}
+.cBody .cBodyEnd .score-holder {
+  padding: 5px 0;
+  font-size: 30px;
+  color: #d85c5c;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 10px;
+}
+.cBody .cBodyEnd .score-holder em {
+  font-size: 16px;
+  color: #E07D7D;
+}
+.cBody .cBodyEnd .infos b {
+  font-size: 16px;
+}
+.cBody .cBodyEnd .infos #comment {
+  margin: 10px 0;
+}
+.cBody .cBodyEnd .infos #btn-share {
+  margin-top: 20px;
+}
+.cFooter img {
+  width: 100%;
+}
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.footer .container {
+  text-align: center;
+}
+.footer .container a {
+  color: #fff;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.btn {
+  -webkit-box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: block;
+  border: none;
+  cursor: pointer;
+}
+.btn-danger {
+  background: #f27774;
+}
+.btn-danger:hover {
+  background: #D4534F;
+}
+.avgScoreHolder {
+  width: 50%;
+  float: left;
+  display: none;
+}
+#fullScoreSpan {
+  float: left;
+  margin-left: 1em;
+  line-height: 34px;
+}
+#fullScoreSpan + em {
+  color: #a0a0a0;
+  line-height: 34px;
+}
+#cCell-score #scoreSecUl .titleA {
+  display: block;
+}
+#cCell-score #scoreSecUl .panel-heading:hover {
+  background: #E9E9E9;
+}
+#cCell-score #scoreSecUl .panel-heading a {
+  margin-right: 20px;
+}
+#cCell-score #scoreSecUl .panel-heading .btn-ss-delete {
+  text-decoration: none;
+  display: none;
+  float: right;
+  cursor: pointer;
+  margin-right: 0;
+}
+#cCell-score #scoreSecUl .panel-heading .btn-ss-delete i {
+  font-size: 16px;
+  line-height: 23px;
+  color: #E67777;
+}
+#cCell-score #scoreSecUl .panel-heading .btn-ss-delete i:hover {
+  color: #BD5555;
+}
+#cCell-score #scoreSecUl li:last-child .btn-ss-delete {
+  display: block;
+}
+#cCell-score .ssHolder {
+  width: 100%;
+}
+#cCell-score #input_scoreComment {
+  margin-top: 10px;
+  height: 60px;
+}
+#cCell-score .ssBtnHolder .btn {
+  width: 46%;
+  font-size: 14px;
+  display: inline-block;
+}
+#cCell-score .ssBtnHolder .btn-danger {
+  float: right;
+}
+#cCell-score .panel {
+  margin-bottom: 10px;
+}
+.ssTint {
+  margin: 5px 0;
+  color: #8B8B8B;
+  margin-bottom: 2em;
+}
+#cCell-end img {
+  width: 100%;
+  border: 1px solid #D1D1D1;
+}
+#cCell-end input {
+  margin-bottom: 10px;
+}
+#cCell-footer img {
+  width: 100%;
+  border: 1px solid #D1D1D1;
+}

@@ -1,0 +1,213 @@
+.uBox-shadow(@x,@y,@radius,@r,@g,@b,@a){
+    -webkit-box-shadow: @x @y @radius rgba(@r, @g, @b, @a);
+    box-shadow: @x @y @radius rgba(@r, @g, @b, @a);
+    -moz-box-shadow: @x @y @radius rgba(@r, @g, @b, @a);
+}
+
+.uGradient(@pos1,@pos2,@color1,@color2){
+    background: -webkit-linear-gradient(@pos1,@color1,@color2);
+}
+
+.css-speed{
+   -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
+
+   -webkit-perspective: 1000;
+   -moz-perspective: 1000;
+   -ms-perspective: 1000;
+   perspective: 1000;
+   /* Other transform properties here */
+    transform: translateZ(0); 
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+    background: url(../img/body_repeat.jpg) center;
+    background-repeat: repeat;
+    padding-bottom: 50px;
+}
+ul,li{
+    list-style: none;
+}
+
+#share-guide{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0px;
+    left: 0px;
+    display: block;
+    cursor: pointer;
+    display: none;
+    img{
+        max-width: 80%;
+        position: absolute;
+        right: 0px;
+        top: 0;
+    }
+}
+
+.queProgress{
+    display: none;
+}
+
+.container{
+    margin-top: 20px;
+    max-width: 640px;
+    .cCell{
+        border-radius: 5px;
+        background: #f9fdff;
+        .uBox-shadow(4px,4px,0px,0,0,0,0.1);
+        padding: 17px;
+        margin-bottom: 20px;
+    }
+    .cHeader{
+        padding-bottom: 27px;
+        height: 120px;
+        .leftIcon{
+            float: left;
+            width: 85px;
+            height: 85px;
+            border-radius: 90px;
+            overflow: hidden;
+            background: #2fb2e1;
+            text-align: center;
+            i{
+                font-size: 44px;
+                line-height: 84px;
+                color: #fff;
+            }
+            img{
+                width: 100%;
+            }
+        }
+        .rightInfos{
+            margin-left: 95px;
+            color: #288eb3;
+            h2{
+                margin-top: 0.5em;
+                margin-bottom: 0.2em;
+                font-size: 24px;
+            }
+            .joinPeople{
+                color: #529cb6;
+                em{
+                    font-style: normal;
+                    color: #cd7171;
+                }
+            }
+        }
+    }
+}
+
+.cBody{
+    .cBodyStart{
+        span{
+            font-size: 16px;
+        }
+        .btn{
+            margin-top: 1em;
+        }
+    }
+    .cBodyEnd{
+        display: none;
+        .score-holder{
+            padding: 5px 0;
+            font-size: 30px;
+            color: #d85c5c;
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 10px;
+            em{
+                font-size: 16px;
+                color: #E07D7D;
+            }
+        }
+        .infos{
+            b{
+                font-size: 16px;
+            }
+            #comment{
+                margin: 10px 0;
+            }
+            #btn-share{
+                margin-top: 20px;
+            }
+        }
+    }
+    .cBodyQue{
+        display: none;
+        .css-speed;
+        .title{
+            font-size: 16px;
+            color: #333;
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 10px;
+            padding: 0 0 10px 0;
+        }
+        ul{
+            padding: 0;
+            li{
+                cursor: pointer;
+                margin-bottom: 10px;
+                border-left: 3px solid #7fcfec;
+                display: block;
+                width: 100%;
+                .uGradient(left,right,#f6f7f7,#f9fdff);
+                padding: 10px;
+                font-size: 16px;
+                &.active{
+                    background: #D4E7F0;
+                }
+            }
+        }
+    }
+}
+.cFooter{
+    img{
+        width: 100%;
+    }
+}
+
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    .container{
+        text-align: center;
+        a{
+            color: #fff;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+
+.btn{
+    .uBox-shadow(4px,4px,0px,0,0,0,0.1);
+    width: 100%;
+    display: block;
+    border: none;
+    cursor: pointer;
+}
+.btn-danger{
+    background: #f27774;
+    &:hover{
+        background: #D4534F;
+    }
+}
+.btn-success{
+
+}
+
+#footerText{
+    .btn{
+        margin-top: 5px;
+        display: inline-block;
+        width: auto;
+    }
+}
