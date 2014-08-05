@@ -3,9 +3,10 @@ include("../conn.php");
 $private = $_GET['private']; 
 $public = $_GET['public'];
 #$data = $_POST['data'];
-$data = $GLOBALS['HTTP_RAW_POST_DATA']
-echo $private+$public+$data;
-$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
+$data = file_get_contents("php://input");
+echo $data;
+
+/*$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
 if (1) {
@@ -15,4 +16,5 @@ if (1) {
 }else{
 	echo "fail";
 }
- ?>
+*/ 
+?>
