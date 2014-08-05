@@ -1,5 +1,5 @@
 (function() {
-  var editDataManager, getWordByIndex, imgManager, nowImgManager, nowQueAdder, nowQueLister, nowScoreManager, queAdder, queLister, scoreManager;
+  var checkNewOrEdit, editDataManager, getCookies, getWordByIndex, nowImgManager, nowQueAdder, nowQueLister, nowScoreManager, queAdder, queLister, scoreManager;
 
   window.dataJson = {};
 
@@ -598,12 +598,24 @@
 
   })();
 
-  imgManager = (function() {
-    function imgManager(imgData) {}
+  getCookies = function() {
+    var cookieArray, index, item, itemTemp, _i, _len;
+    window.shenye_public = null;
+    window.shenye_private = null;
+    cookieArray = document.cookie.split(";");
+    for (index = _i = 0, _len = cookieArray.length; _i < _len; index = ++_i) {
+      item = cookieArray[index];
+      itemTemp = item.split("=");
+      if (itemTemp[0] === "shenye_private") {
+        window.shenye_private = itemTemp[1];
+      } else if (itemTemp[0] === "shenye_public") {
+        window.shenye_public = itemTemp[1];
+      }
+    }
+    return console.log(window.shenye_public, window.shenye_private);
+  };
 
-    return imgManager;
-
-  })();
+  checkNewOrEdit = function() {};
 
   jQuery(document).ready(function() {
     var ansListData, scoreArray, urlPara;
@@ -653,8 +665,7 @@
     console.log("ready");
     nowQueAdder = new queAdder();
     nowQueLister = new queLister(ansListData);
-    nowScoreManager = new scoreManager(scoreArray);
-    return nowImgManager = new imgManager(null);
+    return nowScoreManager = new scoreManager(scoreArray);
   });
 
 }).call(this);
