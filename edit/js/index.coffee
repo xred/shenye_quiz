@@ -643,10 +643,11 @@ class textDataManager
         dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
         console.log dataJsonStr,"dataJsonStr"
         
-        jQuery.post 'save_data.php',{
+        jQuery.ajax 'http://114.215.169.8/shenye_quiz/edit/save_data.php',{
             data: dataJsonStr
+            method: "post"
             contentType: "text/plain"
-            dataType:"text"
+            #dataType:"text"
             private:window.shenye_private
             public:window.shenye_public
         },(result)=>

@@ -681,10 +681,10 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       console.log(window.dataJson, "save dataJson");
       dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
       console.log(dataJsonStr, "dataJsonStr");
-      return jQuery.post('save_data.php', {
+      return jQuery.ajax('http://114.215.169.8/shenye_quiz/edit/save_data.php', {
         data: dataJsonStr,
+        method: "post",
         contentType: "text/plain",
-        dataType: "text",
         "private": window.shenye_private,
         "public": window.shenye_public
       }, function(result) {
