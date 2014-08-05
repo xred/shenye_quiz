@@ -635,6 +635,7 @@ class textDataManager
         
         jQuery.post 'save_data.php',{
             data:dataJsonStr
+            contentType: "application/json"
             private:window.shenye_private
             public:window.shenye_public
         },(result)=>
