@@ -673,7 +673,7 @@
         data: dataJsonStr,
         "private": window.shenye_private,
         "public": window.shenye_public
-      }, function(text, status) {
+      }, function(result) {
         return console.log(text, "post text!!!!!!!!");
       });
     };
@@ -719,10 +719,11 @@
     cookieArray = document.cookie.split(";");
     for (index = _i = 0, _len = cookieArray.length; _i < _len; index = ++_i) {
       item = cookieArray[index];
-      itemTemp = item.split("=");
+      itemTemp = item.replace(" ", "").split("=");
       if (itemTemp[0] === "shenye_private") {
         window.shenye_private = itemTemp[1];
-      } else if (itemTemp[0] === "shenye_public") {
+      }
+      if (itemTemp[0] === "shenye_public") {
         window.shenye_public = itemTemp[1];
       }
     }

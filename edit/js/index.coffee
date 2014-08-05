@@ -635,7 +635,7 @@ class textDataManager
             data:dataJsonStr
             private:window.shenye_private
             public:window.shenye_public
-        },(text,status)=>
+        },(result)=>
             console.log text,"post text!!!!!!!!"
 
     checkAllInfoComplete:()->
@@ -681,10 +681,10 @@ getCookies = ()->
     window.shenye_private = null
     cookieArray = document.cookie.split ";"
     for item,index in cookieArray
-        itemTemp = item.split "="
+        itemTemp = item.replace(" ","").split "="
         if itemTemp[0] == "shenye_private"
             window.shenye_private = itemTemp[1]
-        else if itemTemp[0] == "shenye_public"
+        if itemTemp[0] == "shenye_public"
             window.shenye_public = itemTemp[1]
         
     console.log window.shenye_public,window.shenye_private    
