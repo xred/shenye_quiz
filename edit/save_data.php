@@ -6,10 +6,10 @@ $data = $_POST['data'];
 $query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
-if ($row['public'] == $public && $row['private'] == $private) {
+if (1) {
 	$filename = "./datajson/".$public.".js";
 	file_put_contents($filename, $data);
-	echo "success";
+	echo $data;
 }else{
 	echo "fail";
 }

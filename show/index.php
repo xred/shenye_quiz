@@ -18,7 +18,7 @@ $row = mysql_fetch_array($result);
     <link rel="stylesheet" type="text/css" href="css/bootstrap3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script type="text/javascript" src="js/jq.1.10.2.js"></script>
-    <script type="text/javascript" src="js/datajson.js"></script>
+    <script type="text/javascript" src="../edit/datajson/<?php echo $public ?>.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script>
     </script>

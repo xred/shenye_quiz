@@ -19,8 +19,10 @@ if (1) {
 	if ($status == '1') {
 		setcookie("shenye_public",$public,time()+3600*24*365);
 		setcookie("shenye_private",$private,time()+3600*24*365);
+		$url= sprintf("<a href='%s'>点击创建新的问答</a>","http://http://114.215.169.8/shenye_quiz/edit.php?public=".$public);
+		echo $url;
+	}else{
+		echo "err";
 	}
-	$url= sprintf("<a href='%s'>点击创建新的问答</a>","http://http://114.215.169.8/shenye_quiz/edit.php?public=".$public);
-	echo $url;
 }
  ?>
