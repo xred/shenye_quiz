@@ -15,6 +15,7 @@
 
     <script src="css/bootstrap3/js/bootstrap.min.js"></script>
     <script src="messager/js/messenger.min.js"></script>
+
     <script type="text/javascript" src="js/index.js"></script>
     <script>
     </script>
@@ -82,13 +83,13 @@
                 <br>
             </li>
             <li role="presentation">
-                <a href="#">
+                <a id="btn-saveData">
                     <i class="icon-save"></i>
                     保存
                 </a>
             </li>
             <li role="presentation">
-                <a href="#">
+                <a id="btn-preview">
                     <i class="icon-desktop"></i>
                     预览
                 </a>

@@ -1,9 +1,8 @@
-window.dataJson = {}
 
 nowQueAdder = null
 nowQueLister = null
 nowScoreManager = null
-nowImgManager = null
+nowTextDataManager = null
 
 getWordByIndex = (index)->
         switch index
@@ -562,6 +561,49 @@ class scoreManager
         @setSSStart()
         @clearContent()
 
+class textDataManager
+    constructor: (dataJson) ->
+        @queTitle
+        @startText
+
+        @footerText
+
+        @endText
+        @accountBtnText
+        @accountBtnHref
+
+        #eles
+        @queTitleInput = jQuery "#queTitle"
+        @startTextInput = jQuery "#startText"
+        @endTextInput = jQuery "#input_endText"
+
+        @footerTextInput = jQuery "#input_footerText"
+
+        @accountBtnTextInput = jQuery "#input_endBtnText"
+        @accountBtnHrefInput = jQuery "#input_endBtnHref"
+        
+        @init dataJson
+
+    init:(dataJson)->
+        if dataJson == null
+            console.log "no text dataJson"
+            @dataJson = {}
+        else
+            console.log "editing"
+            @dataJson = dataJson
+            @queTitleInput.val dataJson["queTitle"]
+            @startTextInput.val dataJson["startText"]
+            @endTextInput.val dataJson["endText"]
+
+            @footerTextInput.val dataJson["footerText"]
+            @accountBtnTextInput.val dataJson["accountBtnText"]
+            @accountBtnHrefInput.val dataJson["accountBtnHref"]
+        @saveEvent()
+
+    saveEvent:()->
+        @saveBtn = jQuery "#btn-saveData"
+        @previewBtn = jQuery "btn-preview"
+
 getCookies = ()->
     window.shenye_public = null
     window.shenye_private = null
@@ -575,13 +617,42 @@ getCookies = ()->
         
     console.log window.shenye_public,window.shenye_private    
         
-        
-    
-
 checkNewOrEdit = ()->
+    #check url to select pattern
+    urlPara = window.location.search
+    console.log urlPara,"urlPara"
+    if urlPara.indexOf("isedit=1") >= 0
+        console.log "edit page"
+        window.isedit = yes
+        createClassed yes
+    else
+        console.log "new page"
+        window.isedit = no
+        createClassed no
 
+createClassed = (isedit)->
+    if isedit
+        console.log "window.dataJson",window.dataJson
+        if typeof(window.dataJson) != 'undefined'
+            nowQueAdder = new queAdder()
+            nowQueLister = new queLister window.dataJson["queData"]
+            nowScoreManager = new scoreManager window.dataJson["scoreArray"]
+            nowTextDataManager = new textDataManager window.dataJson
+        else
+            console.log "error!!! no dataJson found!!!"
+
+    else
+        nowQueAdder = new queAdder()
+        nowQueLister = new queLister null
+        nowScoreManager = new scoreManager null
+        nowTextDataManager = new textDataManager null
+        
 
 jQuery(document).ready ->
+
+    getCookies()
+    checkNewOrEdit()
+    createClassed()
 
     ansListData = [
         {
@@ -660,14 +731,9 @@ jQuery(document).ready ->
         }
     ]
 
-    #check url to select pattern
-    urlPara = window.location.search
-    console.log urlPara
 
     console.log "ready"
-    nowQueAdder = new queAdder()
-    nowQueLister = new queLister ansListData 
-    nowScoreManager = new scoreManager scoreArray
+    
 
 
 

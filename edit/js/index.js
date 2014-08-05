@@ -1,7 +1,5 @@
 (function() {
-  var checkNewOrEdit, editDataManager, getCookies, getWordByIndex, nowImgManager, nowQueAdder, nowQueLister, nowScoreManager, queAdder, queLister, scoreManager;
-
-  window.dataJson = {};
+  var checkNewOrEdit, createClassed, editDataManager, getCookies, getWordByIndex, nowQueAdder, nowQueLister, nowScoreManager, nowTextDataManager, queAdder, queLister, scoreManager, textDataManager;
 
   nowQueAdder = null;
 
@@ -9,7 +7,7 @@
 
   nowScoreManager = null;
 
-  nowImgManager = null;
+  nowTextDataManager = null;
 
   getWordByIndex = function(index) {
     switch (index) {
@@ -598,6 +596,49 @@
 
   })();
 
+  textDataManager = (function() {
+    function textDataManager(dataJson) {
+      this.queTitle;
+      this.startText;
+      this.footerText;
+      this.endText;
+      this.accountBtnText;
+      this.accountBtnHref;
+      this.queTitleInput = jQuery("#queTitle");
+      this.startTextInput = jQuery("#startText");
+      this.endTextInput = jQuery("#input_endText");
+      this.footerTextInput = jQuery("#input_footerText");
+      this.accountBtnTextInput = jQuery("#input_endBtnText");
+      this.accountBtnHrefInput = jQuery("#input_endBtnHref");
+      this.init(dataJson);
+    }
+
+    textDataManager.prototype.init = function(dataJson) {
+      if (dataJson === null) {
+        console.log("no text dataJson");
+        this.dataJson = {};
+      } else {
+        console.log("editing");
+        this.dataJson = dataJson;
+        this.queTitleInput.val(dataJson["queTitle"]);
+        this.startTextInput.val(dataJson["startText"]);
+        this.endTextInput.val(dataJson["endText"]);
+        this.footerTextInput.val(dataJson["footerText"]);
+        this.accountBtnTextInput.val(dataJson["accountBtnText"]);
+        this.accountBtnHrefInput.val(dataJson["accountBtnHref"]);
+      }
+      return this.saveEvent();
+    };
+
+    textDataManager.prototype.saveEvent = function() {
+      this.saveBtn = jQuery("#btn-saveData");
+      return this.previewBtn = jQuery("btn-preview");
+    };
+
+    return textDataManager;
+
+  })();
+
   getCookies = function() {
     var cookieArray, index, item, itemTemp, _i, _len;
     window.shenye_public = null;
@@ -615,10 +656,45 @@
     return console.log(window.shenye_public, window.shenye_private);
   };
 
-  checkNewOrEdit = function() {};
+  checkNewOrEdit = function() {
+    var urlPara;
+    urlPara = window.location.search;
+    console.log(urlPara, "urlPara");
+    if (urlPara.indexOf("isedit=1") >= 0) {
+      console.log("edit page");
+      window.isedit = true;
+      return createClassed(true);
+    } else {
+      console.log("new page");
+      window.isedit = false;
+      return createClassed(false);
+    }
+  };
+
+  createClassed = function(isedit) {
+    if (isedit) {
+      console.log("window.dataJson", window.dataJson);
+      if (typeof window.dataJson !== 'undefined') {
+        nowQueAdder = new queAdder();
+        nowQueLister = new queLister(window.dataJson["queData"]);
+        nowScoreManager = new scoreManager(window.dataJson["scoreArray"]);
+        return nowTextDataManager = new textDataManager(window.dataJson);
+      } else {
+        return console.log("error!!! no dataJson found!!!");
+      }
+    } else {
+      nowQueAdder = new queAdder();
+      nowQueLister = new queLister(null);
+      nowScoreManager = new scoreManager(null);
+      return nowTextDataManager = new textDataManager(null);
+    }
+  };
 
   jQuery(document).ready(function() {
-    var ansListData, scoreArray, urlPara;
+    var ansListData, scoreArray;
+    getCookies();
+    checkNewOrEdit();
+    createClassed();
     ansListData = [
       {
         title: "标题1",
@@ -660,12 +736,7 @@
         comment: "我在【是不是华科人】中得了满分,比根叔都高,简直可以当校长了！"
       }
     ];
-    urlPara = window.location.search;
-    console.log(urlPara);
-    console.log("ready");
-    nowQueAdder = new queAdder();
-    nowQueLister = new queLister(ansListData);
-    return nowScoreManager = new scoreManager(scoreArray);
+    return console.log("ready");
   });
 
 }).call(this);

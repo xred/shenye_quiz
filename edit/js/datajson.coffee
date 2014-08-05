@@ -1,4 +1,4 @@
-window.nowdatajson = {
+window.dataJson = {
     queTitle:"华科人鉴定考试"    
     startText:"请在没有指导人的情况下独立完成，如有舞弊，一经发现，即刻永久吊销“华科校友圈”圈籍 -关注微信：hustunion"
     
@@ -15,7 +15,7 @@ window.nowdatajson = {
     queData:[
         {
             title:'华科人一天要骂学校几遍？'
-            choices:[
+            answerList:[
                 "4遍"
                 "8遍"
                 '10遍'
@@ -25,7 +25,7 @@ window.nowdatajson = {
         }
         {
             title:'华科校园非常大，而很多课程又要跨校区去上，因此交通工具必不可少。喻园是棋盘式布局，道路平坦笔直，很适合自行车行驶，但同时自行车丢失率也很高。华科学生每年平均要消耗几辆自行车？'
-            choices:[
+            answerList:[
                 "0.8"
                 "1.8"
                 '2.8'
@@ -35,7 +35,7 @@ window.nowdatajson = {
         }
         {
             title:'华科的后禽每年赚了学生多少钱？'
-            choices:[
+            answerList:[
                 "5000万"
                 "6000万"
                 "7000万"
@@ -45,7 +45,7 @@ window.nowdatajson = {
         }
         {
             title:'世界上最杯具的打车人：从N年前站在那到现在就没打到过车。没错，这发生在华科！请问这个杯具的位置在哪？'
-            choices:[
+            answerList:[
                 "南三门"
                 "东小门"
                 '光谷体育馆'
@@ -55,7 +55,7 @@ window.nowdatajson = {
         }
         {
             title:'以下哪个学院不是三本？'
-            choices:[
+            answerList:[
                 "华中科技大学武昌分校"
                 "华中科技大学启明学院"
                 '华中科技大学文华学院'
@@ -65,7 +65,7 @@ window.nowdatajson = {
         }
         {
             title:'东湖那边的锅里捂汗大学，距离世界一流大学有多远？'
-            choices:[
+            answerList:[
                 "还需几十年的发展"
                 "坐591路到关山口站下车直达"
                 '遥遥无期'
@@ -75,7 +75,7 @@ window.nowdatajson = {
         }
         {
             title:'华科学生每年穿凉拖鞋的天数大概是多少天？'
-            choices:[
+            answerList:[
                 "100天"
                 "150天"
                 '200天'
@@ -85,7 +85,7 @@ window.nowdatajson = {
         }
         {
             title:'以下哪个不是正确的泼水节游行口号？'
-            choices:[
+            answerList:[
                 "没有计算机，哪来陈冠希"
                 "软件软件，又软又贱"
                 '土承天下，木撑苍穹'
@@ -95,7 +95,7 @@ window.nowdatajson = {
         }
         {
             title:'华科男和异性说的最多的一句话是？'
-            choices:[
+            answerList:[
                 "我爱你"
                 "一起去看电影吧"
                 '阿姨，三两'
@@ -105,7 +105,7 @@ window.nowdatajson = {
         }
         {
             title:'从华科最东边的东小门坐公交去最西边的南三门，共要经历几个公交站（含起点和终点站）？'
-            choices:[
+            answerList:[
                 "3个"
                 "4个"
                 '5个'
@@ -115,7 +115,7 @@ window.nowdatajson = {
         }
         {
             title:'民间版“大学生活动中心”在哪里？'
-            choices:[
+            answerList:[
                 "南二门对面"
                 "喻园餐厅南面"
                 '东校区图书馆附近'
@@ -125,7 +125,7 @@ window.nowdatajson = {
         }
         {
             title:'在华科一直流传着这样的传说：如果汉纸是华科的树，那么妹纸就是华科的灯，一盏路灯照十棵树也不够。。。请问华中科技大学现在的男女比例约为？'
-            choices:[
+            answerList:[
                 "7：1"
                 "7：2"
                 '7：3'
@@ -135,7 +135,7 @@ window.nowdatajson = {
         }
         {
             title:'西十二楼的男卫生间位于这栋楼的哪个方位？'
-            choices:[
+            answerList:[
                 "东面"
                 "西面"
                 '北面'
@@ -145,7 +145,7 @@ window.nowdatajson = {
         }
         {
             title:'华中科技大学位于珞瑜路多少号？'
-            choices:[
+            answerList:[
                 "1024号"
                 "233号"
                 '9527号'
@@ -155,7 +155,7 @@ window.nowdatajson = {
         }
         {
             title:'华科有哪个著名小吃？'
-            choices:[
+            answerList:[
                 "武大郎烧饼"
                 "集贸东北大板"
                 '南三门鸡蛋灌饼'
@@ -165,7 +165,7 @@ window.nowdatajson = {
         }
         {
             title:'绝望坡的长度和倾角约为多少？'
-            choices:[
+            answerList:[
                 "长300米，倾角30度18分"
                 "长300米，倾角20度18分"
                 '长500米，倾角20度18分'
@@ -175,7 +175,7 @@ window.nowdatajson = {
         }
         {
             title:'华科学生恋爱率最高的院系是？'
-            choices:[
+            answerList:[
                 "建规学院"
                 "控制系"
                 '外国语学院'
@@ -185,7 +185,7 @@ window.nowdatajson = {
         }
         {
             title:'中国语文如何取得高分？'
-            choices:[
+            answerList:[
                 "好好学习，天天向上"
                 "准备好小抄"
                 '求佛'
@@ -195,7 +195,7 @@ window.nowdatajson = {
         }
         {
             title:'一个标准的华科人应该是这样的_____'
-            choices:[
+            answerList:[
                 "一个女生骑车，后座带着一个女生，旁边一个女生幽怨的看着"
                 "一个男生骑车，后座带着一个女生，旁边一个男生幽怨的看着"
                 '一个男生骑车，后座带着一个男生，旁边一个男生幽怨的看着'
@@ -205,7 +205,7 @@ window.nowdatajson = {
         }
         {
             title:'5块钱在华科能吃到什么？'
-            choices:[
+            answerList:[
                 "韵苑二楼：酱椒蒸草鱼+辣子鸡块"
                 "西一一楼：农家小炒肉+金针菇煮鸭血"
                 '百景二楼：干煸土豆条+酸菜鱼'
