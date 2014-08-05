@@ -1,4 +1,15 @@
 (function() {
+  String.prototype.replaceAll = function(s1, s2) {      
+    return this.replace(new RegExp(s1, "gm"), s2); //g 全局     
+}     
+    
+String.prototype.replaceAll2Excep = function(s1, s2) {        
+    var temp = this;        
+    while (temp.indexOf(s1) != -1) {        
+        temp = temp.replace(s1, s2);        
+    }        
+    return temp;        
+};
   var checkNewOrEdit, createClassed, editDataManager, getCookies, getWordByIndex, nowQueAdder, nowQueLister, nowScoreManager, nowTextDataManager, queAdder, queLister, scoreManager, textDataManager;
 
   nowQueAdder = null;
@@ -669,11 +680,10 @@
       window.dataJson.scoreArray = nowScoreManager.scoreArray;
       console.log(window.dataJson, "save dataJson");
       dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
-      dataJsonStr = dataJsonStr.replace("\"", "\'");
       console.log(dataJsonStr, "dataJsonStr");
       return jQuery.post('save_data.php', {
         data: dataJsonStr,
-        contentType: "application/json",
+        dataType: "text",
         "private": window.shenye_private,
         "public": window.shenye_public
       }, function(result) {
@@ -682,12 +692,12 @@
     };
 
     textDataManager.prototype.checkAllInfoComplete = function() {
-      this.queTitle = this.queTitleInput.val().replace(" ", "");
-      this.startText = this.startTextInput.val().replace(" ", "");
-      this.endText = this.endTextInput.val().replace(" ", "");
-      this.footerText = this.footerTextInput.val().replace(" ", "");
-      this.accountBtnText = this.accountBtnTextInput.val().replace(" ", "");
-      this.accountBtnHref = this.accountBtnHrefInput.val().replace(" ", "");
+      this.queTitle = this.queTitleInput.val().replaceAll(" ", "");
+      this.startText = this.startTextInput.val().replaceAll(" ", "");
+      this.endText = this.endTextInput.val().replaceAll(" ", "");
+      this.footerText = this.footerTextInput.val().replaceAll(" ", "");
+      this.accountBtnText = this.accountBtnTextInput.val().replaceAll(" ", "");
+      this.accountBtnHref = this.accountBtnHrefInput.val().replaceAll(" ", "");
       if (this.queTitle === "") {
         window.alertMsg("标题还没有填！！", "error", 3);
         return false;

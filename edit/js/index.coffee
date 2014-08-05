@@ -1,3 +1,14 @@
+`String.prototype.replaceAll = function(s1, s2) {      
+    return this.replace(new RegExp(s1, "gm"), s2); //g 全局     
+}     
+    
+String.prototype.replaceAll2Excep = function(s1, s2) {        
+    var temp = this;        
+    while (temp.indexOf(s1) != -1) {        
+        temp = temp.replace(s1, s2);        
+    }        
+    return temp;        
+}`
 
 nowQueAdder = null
 nowQueLister = null
@@ -630,24 +641,24 @@ class textDataManager
         window.dataJson.scoreArray = nowScoreManager.scoreArray
         console.log window.dataJson,"save dataJson"
         dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
-        dataJsonStr = dataJsonStr.replace "\"","\'"
         console.log dataJsonStr,"dataJsonStr"
         
         jQuery.post 'save_data.php',{
             data:dataJsonStr
-            contentType: "application/json"
+            #contentType: "application/json"
+            dataType:"text"
             private:window.shenye_private
             public:window.shenye_public
         },(result)=>
             console.log result,"post result!!!!!!!!"
 
     checkAllInfoComplete:()->
-        @queTitle = @queTitleInput.val().replace " ",""
-        @startText = @startTextInput.val().replace " ",""
-        @endText = @endTextInput.val().replace " ",""
-        @footerText = @footerTextInput.val().replace " ",""
-        @accountBtnText = @accountBtnTextInput.val().replace " ",""
-        @accountBtnHref = @accountBtnHrefInput.val().replace " ",""
+        @queTitle = @queTitleInput.val().replaceAll " ",""
+        @startText = @startTextInput.val().replaceAll " ",""
+        @endText = @endTextInput.val().replaceAll " ",""
+        @footerText = @footerTextInput.val().replaceAll " ",""
+        @accountBtnText = @accountBtnTextInput.val().replaceAll " ",""
+        @accountBtnHref = @accountBtnHrefInput.val().replaceAll " ",""
 
         if @queTitle == ""
             window.alertMsg "标题还没有填！！","error",3
@@ -666,15 +677,6 @@ class textDataManager
                         return false
                     else
                         return yes
-                                
-                    
-                    
-                
-                
-                
-            
-            
-            
         
         
 
