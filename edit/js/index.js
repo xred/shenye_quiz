@@ -679,12 +679,8 @@ String.prototype.replaceAll2Excep = function(s1, s2) {
       window.dataJson.scoreArray = nowScoreManager.scoreArray;
       console.log(window.dataJson, "save dataJson");
       dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
-      return jQuery.ajax('save_data.php', {
-        data: {
-          data: dataJsonStr,
-          "private": window.shenye_private,
-          "public": window.shenye_public
-        },
+      return jQuery.ajax('save_data.php?private=#{window.shenye_private}&public=#{window.shenye_public}', {
+        data: dataJsonStr,
         method: "post",
         contentType: "text/plain",
         success: function(result) {
