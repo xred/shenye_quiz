@@ -299,6 +299,7 @@
         }
       });
       this.cancelEditBtn.click(function() {
+        console.log("fuckyou!!!!!!!!!!!!!!!!");
         if (_this.isEditByIndex) {
           _this.isEditByIndex = false;
           _this.setBtnsStatus();
@@ -309,10 +310,12 @@
 
     queAdder.prototype.checkInfosComplete = function() {
       var ansItem, index, item, realInput, rightRadio, _i, _len;
+      console.log("checkInfosComplete()");
       this.title = this.titleInput.val();
       this.answerList = [];
       if (this.title === "") {
         window.alertMsg("问题的标题还空着呢喂！！", "error", 3);
+        return false;
       } else {
         rightRadio = jQuery("[name='rightAns']").filter(":checked");
         realInput = this.ansUl.find(".form-control");
@@ -323,13 +326,14 @@
           console.log(ansItem);
           if (ansItem === "") {
             window.alertMsg("(ﾉ￣д￣)ﾉ  第 " + (index + 1) + " 条答案是空的哇！！", "error", 3);
-            return;
+            return false;
           } else {
             this.answerList.push(ansItem);
           }
         }
         if (rightRadio.length === 0) {
           window.alertMsg("(ﾉ￣д￣)ﾉ 没有正确答案你闹哪样啊！", "error", 3);
+          return false;
         } else {
           this.rightIndex = parseInt(rightRadio.attr("value"));
           console.log("rightIndex", this.rightIndex);
@@ -423,8 +427,8 @@
       this.btn_deleteSS = jQuery("#btn_deleteSS");
       this.ssStart = jQuery("#scoreSecStart");
       this.ssUl = jQuery("#scoreSecUl");
-      this.fullScore;
-      this.avgScore;
+      this.fullScore = 0;
+      this.avgScore = 0;
       this.isDeletingAllSSNow = false;
       if (scoreArray !== null) {
         this.scoreArray = scoreArray;
@@ -485,15 +489,16 @@
     };
 
     scoreManager.prototype.setSSStart = function() {
-      var arrayCount, lastScore, startStr;
+      var arrayCount, startStr;
       arrayCount = this.scoreArray.length;
       if (arrayCount === 0) {
+        this.fullScore = 0;
         startStr = "0 < 分数 <= ";
         this.span_fullScore.html("总分: 0");
       } else {
-        lastScore = this.scoreArray[arrayCount - 1]["score"];
-        startStr = "" + lastScore + " < 分数 <= ";
-        this.span_fullScore.html("总分: " + lastScore);
+        this.fullScore = this.scoreArray[arrayCount - 1]["score"];
+        startStr = "" + this.fullScore + " < 分数 <= ";
+        this.span_fullScore.html("总分: " + this.fullScore);
       }
       return this.ssStart.html(startStr);
     };
@@ -631,8 +636,76 @@
     };
 
     textDataManager.prototype.saveEvent = function() {
+      var _this = this;
       this.saveBtn = jQuery("#btn-saveData");
-      return this.previewBtn = jQuery("btn-preview");
+      this.previewBtn = jQuery("btn-preview");
+      return this.saveBtn.click(function() {
+        if (_this.checkAllInfoComplete()) {
+          console.log("all info check clear");
+          return _this.saveDataJson();
+        } else {
+
+        }
+      });
+    };
+
+    textDataManager.prototype.saveDataJson = function() {
+      var dataJsonStr,
+        _this = this;
+      if (window.dataJson === null) {
+        window.dataJson = {};
+      }
+      if (typeof window.dataJson === "undefined") {
+        window.dataJson = {};
+      }
+      window.dataJson.queTitle = this.queTitle;
+      window.dataJson.startText = this.startText;
+      window.dataJson.footerText = this.footerText;
+      window.dataJson.endText = this.endText;
+      window.dataJson.accountBtnText = this.accountBtnText;
+      window.dataJson.accountBtnHref = this.accountBtnHref;
+      window.dataJson.fullScore = nowScoreManager.fullScore;
+      window.dataJson.queData = nowQueLister.listData;
+      window.dataJson.scoreArray = nowScoreManager.scoreArray;
+      console.log(window.dataJson, "save dataJson");
+      dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson);
+      return jQuery.post('save_data.php', {
+        data: dataJsonStr,
+        "private": window.shenye_private,
+        "public": window.shenye_public
+      }, function(text, status) {
+        return console.log(text, "post text!!!!!!!!");
+      });
+    };
+
+    textDataManager.prototype.checkAllInfoComplete = function() {
+      this.queTitle = this.queTitleInput.val().replace(" ", "");
+      this.startText = this.startTextInput.val().replace(" ", "");
+      this.endText = this.endTextInput.val().replace(" ", "");
+      this.footerText = this.footerTextInput.val().replace(" ", "");
+      this.accountBtnText = this.accountBtnTextInput.val().replace(" ", "");
+      this.accountBtnHref = this.accountBtnHrefInput.val().replace(" ", "");
+      if (this.queTitle === "") {
+        window.alertMsg("标题还没有填！！", "error", 3);
+        return false;
+      } else {
+        if (this.startText === "") {
+          window.alertMsg("引导文字还木有填哦。。", "error", 3);
+          return false;
+        } else {
+          if (nowQueLister.listData.length <= 0) {
+            window.alertMsg("问题列表还是空的，请填点东西进去吧~", "error", 3);
+            return false;
+          } else {
+            if (nowScoreManager.scoreArray.length <= 0) {
+              window.alertMsg("分数还没有进行分段哦……", "error", 3);
+              return false;
+            } else {
+              return true;
+            }
+          }
+        }
+      }
     };
 
     return textDataManager;
@@ -667,12 +740,14 @@
     } else {
       console.log("new page");
       window.isedit = false;
+      window.dataJson = {};
       return createClassed(false);
     }
   };
 
   createClassed = function(isedit) {
     if (isedit) {
+      console.log("caonima");
       console.log("window.dataJson", window.dataJson);
       if (typeof window.dataJson !== 'undefined') {
         nowQueAdder = new queAdder();
@@ -683,6 +758,7 @@
         return console.log("error!!! no dataJson found!!!");
       }
     } else {
+      console.log("fuckuou");
       nowQueAdder = new queAdder();
       nowQueLister = new queLister(null);
       nowScoreManager = new scoreManager(null);
@@ -694,7 +770,6 @@
     var ansListData, scoreArray;
     getCookies();
     checkNewOrEdit();
-    createClassed();
     ansListData = [
       {
         title: "标题1",

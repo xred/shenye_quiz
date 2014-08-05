@@ -123,9 +123,9 @@ class uniqueQuestion
                 <ul id='queList'>"
 
         #create list
-        choicesArray = nowDataJson['choices']
+        answerListArray = nowDataJson['answerList']
 
-        for item,index in choicesArray
+        for item,index in answerListArray
             nowWord = @getWordByIndex index
             liHtml = "<li><span>#{nowWord}. #{item}</span></li>"
             queHtml += liHtml

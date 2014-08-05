@@ -10,7 +10,7 @@
     fullScore: 100,
     queData: [
       {
-        title: '华科人一天要骂学校几遍？',
+        title: '华科人一天要骂学校几遍',
         answerList: ["4遍", "8遍", '10遍', '不固定'],
         rightIndex: 1
       }, {

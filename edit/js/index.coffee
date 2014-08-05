@@ -289,6 +289,7 @@ class queAdder
                 # 
                 @addQueItem()
         @cancelEditBtn.click =>
+            console.log "fuckyou!!!!!!!!!!!!!!!!"
             if @isEditByIndex
                 @isEditByIndex = no
                 @setBtnsStatus()
@@ -296,12 +297,13 @@ class queAdder
 
 
     checkInfosComplete:()->
+        console.log "checkInfosComplete()"
         @title = @titleInput.val()
         @answerList = []
         #check title
         if @title == ""
             window.alertMsg "问题的标题还空着呢喂！！","error",3
-            return
+            return false
         else
             #check answerList
             rightRadio = jQuery("[name='rightAns']").filter(":checked")
@@ -312,14 +314,14 @@ class queAdder
                 console.log ansItem
                 if ansItem == ""
                     window.alertMsg "(ﾉ￣д￣)ﾉ  第 #{index+1} 条答案是空的哇！！","error",3
-                    return
+                    return false
                 else
                     @answerList.push ansItem
 
             #check radio
             if rightRadio.length == 0
                 window.alertMsg "(ﾉ￣д￣)ﾉ 没有正确答案你闹哪样啊！","error",3
-                return
+                return false
             else
                 @rightIndex = parseInt rightRadio.attr "value"
                 console.log "rightIndex",@rightIndex
@@ -404,8 +406,8 @@ class scoreManager
 
         @ssUl = jQuery "#scoreSecUl"
         #data
-        @fullScore
-        @avgScore
+        @fullScore = 0
+        @avgScore = 0
 
         @isDeletingAllSSNow = no
 
@@ -461,12 +463,13 @@ class scoreManager
     setSSStart:()->
         arrayCount = @scoreArray.length
         if arrayCount == 0
+            @fullScore = 0
             startStr = "0 < 分数 <= "
             @span_fullScore.html "总分: 0"
         else
-            lastScore = @scoreArray[arrayCount-1]["score"]
-            startStr = "#{lastScore} < 分数 <= "
-            @span_fullScore.html "总分: #{lastScore}"
+            @fullScore = @scoreArray[arrayCount-1]["score"]
+            startStr = "#{@fullScore} < 分数 <= "
+            @span_fullScore.html "总分: #{@fullScore}"
         @ssStart.html startStr
         
         
@@ -604,6 +607,75 @@ class textDataManager
         @saveBtn = jQuery "#btn-saveData"
         @previewBtn = jQuery "btn-preview"
 
+        @saveBtn.click =>
+            if @checkAllInfoComplete()
+                console.log "all info check clear"
+
+                @saveDataJson()
+            else
+                return
+    saveDataJson:()->
+        if window.dataJson == null
+            window.dataJson = {}
+        if typeof(window.dataJson) == "undefined"
+            window.dataJson = {}
+        window.dataJson.queTitle = @queTitle
+        window.dataJson.startText = @startText
+        window.dataJson.footerText = @footerText
+        window.dataJson.endText = @endText
+        window.dataJson.accountBtnText = @accountBtnText
+        window.dataJson.accountBtnHref = @accountBtnHref
+        window.dataJson.fullScore = nowScoreManager.fullScore
+        window.dataJson.queData = nowQueLister.listData
+        window.dataJson.scoreArray = nowScoreManager.scoreArray
+        console.log window.dataJson,"save dataJson"
+        dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
+        
+        jQuery.post 'save_data.php',{
+            data:dataJsonStr
+            private:window.shenye_private
+            public:window.shenye_public
+        },(text,status)=>
+            console.log text,"post text!!!!!!!!"
+
+    checkAllInfoComplete:()->
+        @queTitle = @queTitleInput.val().replace " ",""
+        @startText = @startTextInput.val().replace " ",""
+        @endText = @endTextInput.val().replace " ",""
+        @footerText = @footerTextInput.val().replace " ",""
+        @accountBtnText = @accountBtnTextInput.val().replace " ",""
+        @accountBtnHref = @accountBtnHrefInput.val().replace " ",""
+
+        if @queTitle == ""
+            window.alertMsg "标题还没有填！！","error",3
+            return false
+        else
+            if @startText == ""
+                window.alertMsg "引导文字还木有填哦。。","error",3
+                return false
+            else
+                if nowQueLister.listData.length <= 0
+                    window.alertMsg "问题列表还是空的，请填点东西进去吧~","error",3
+                    return false
+                else
+                    if nowScoreManager.scoreArray.length <= 0
+                        window.alertMsg "分数还没有进行分段哦……","error",3
+                        return false
+                    else
+                        return yes
+                                
+                    
+                    
+                
+                
+                
+            
+            
+            
+        
+        
+
+
 getCookies = ()->
     window.shenye_public = null
     window.shenye_private = null
@@ -628,10 +700,12 @@ checkNewOrEdit = ()->
     else
         console.log "new page"
         window.isedit = no
+        window.dataJson = {}
         createClassed no
 
 createClassed = (isedit)->
     if isedit
+        console.log "caonima"
         console.log "window.dataJson",window.dataJson
         if typeof(window.dataJson) != 'undefined'
             nowQueAdder = new queAdder()
@@ -642,6 +716,7 @@ createClassed = (isedit)->
             console.log "error!!! no dataJson found!!!"
 
     else
+        console.log "fuckuou"
         nowQueAdder = new queAdder()
         nowQueLister = new queLister null
         nowScoreManager = new scoreManager null
@@ -652,7 +727,6 @@ jQuery(document).ready ->
 
     getCookies()
     checkNewOrEdit()
-    createClassed()
 
     ansListData = [
         {

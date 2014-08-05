@@ -122,15 +122,15 @@
     };
 
     uniqueQuestion.prototype.createQueDiv = function() {
-      var choicesArray, index, item, liHtml, nowDataJson, nowWord, queHtml, title, titleStr, _i, _len;
+      var answerListArray, index, item, liHtml, nowDataJson, nowWord, queHtml, title, titleStr, _i, _len;
       this.setProgress();
       nowDataJson = this.dataArray[this.nowQueIndex];
       title = nowDataJson['title'];
       titleStr = "" + (this.nowQueIndex + 1) + ". " + title;
       queHtml = "<div class='title'>                    " + titleStr + "                    </div>                <ul id='queList'>";
-      choicesArray = nowDataJson['choices'];
-      for (index = _i = 0, _len = choicesArray.length; _i < _len; index = ++_i) {
-        item = choicesArray[index];
+      answerListArray = nowDataJson['answerList'];
+      for (index = _i = 0, _len = answerListArray.length; _i < _len; index = ++_i) {
+        item = answerListArray[index];
         nowWord = this.getWordByIndex(index);
         liHtml = "<li><span>" + nowWord + ". " + item + "</span></li>";
         queHtml += liHtml;

@@ -144,6 +144,7 @@ li {
   border-bottom: 0;
 }
 .guide-list li a {
+  cursor: pointer;
   padding: 16px 16px;
 }
 .guide-list li a i {
