@@ -2,8 +2,7 @@
 include("../conn.php");
 $private = $_GET['private']; 
 $public = $_GET['public'];
-#$data = $_POST['data'];
-$data = file_get_contents("php://input");
+$data = file_get_contents("php://input")
 $query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
