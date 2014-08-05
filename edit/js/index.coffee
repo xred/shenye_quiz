@@ -643,7 +643,7 @@ class textDataManager
         dataJsonStr = "window.dataJson=" + JSON.stringify(window.dataJson)
         #console.log dataJsonStr,"dataJsonStr"
         
-        jQuery.ajax 'save_data.php?private=#{window.shenye_private}&public=#{window.shenye_public}',{
+        jQuery.ajax "save_data.php?private=#{window.shenye_private}&public=#{window.shenye_public}",{
             data:dataJsonStr
             method: "post"
             contentType: "text/plain"
