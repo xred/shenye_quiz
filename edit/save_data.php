@@ -4,9 +4,7 @@ $private = $_GET['private'];
 $public = $_GET['public'];
 #$data = $_POST['data'];
 $data = file_get_contents("php://input");
-echo $data;
-
-/*$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
+$query = "SELECT * FROM `shenye_user_data` where `public` = '$public'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
 if (1) {
@@ -16,5 +14,9 @@ if (1) {
 }else{
 	echo "fail";
 }
+<<<<<<< HEAD
 */ 
 ?>
+=======
+?>
+>>>>>>> 66bd9429f3edd2b8b0664df4f03a71b49238f22f
